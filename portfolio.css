@@ -1,0 +1,88 @@
+div.container {
+    width: 100%;
+}
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: Black;
+    clear: left;
+    text-align: center;
+    background-image: url(images/header.jpg);
+    background-size: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul a {
+    text-decoration: none;
+}
+
+
+
+body  {
+    background: #5D6B6E url("images/design.jpg") no-repeat fixed center; 
+    background-size: 100%;
+    color: white;
+}
+
+/* unvisited link */
+a:link {
+    color: deepskyblue;
+}
+
+/* visited link */
+a:visited {
+    color: purple;
+}
+
+/* mouse over link */
+a:hover {
+    color: hotpink;
+}
+
+/* selected link */
+a:active {
+    color: blue;
+}
+
+img{
+    max-width: 640px;
+    max-height: 480px;
+    float: left;
+    padding-right: 35px; 
+}
+
+div.gallery {
+    margin: 20px;
+    border: 1px solid #ccc;
+    width: 250px;
+    height: 450px;
+    background-color: dodgerblue;
+    float: left;   
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+    padding: inherit;
+}
+
+div.top {
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}

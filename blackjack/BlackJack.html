@@ -1,0 +1,150 @@
+<html>
+	<head>
+		<title>Black Jack</title>
+		<style type="text/css">
+			body{
+				background-image: url("Blackjack_background.jpg");
+                background-repeat: no-repeat;
+                background-size: 100%;
+                background-color: #010300;
+				color: white;
+			}
+			hr{
+				width: 80%;
+			}
+			td{
+			    width: 100px;
+				height: 50px;
+				text-align: center;
+			}
+			html{
+				font-family: "Lato", sans-serif;
+			}
+			table{
+				box-shadow: 2px 3px 1px #222222;
+				background: #0E2418;
+				border-collapse: collapse;
+			}
+			table,th,td{
+				border: 2px solid white;
+			}
+			button{
+				width: 120px;
+				height: 50px;
+				color: white;
+				background-color: #701D15;
+				border: none;
+				box-show: 1px 2px #222222;
+		</style>
+		<script>
+      var player = 0;
+      var dealer = 0;
+      var bet = 0;
+      var cash = 500;
+      function showBet(){
+        if(cash - bet < 0 || cash < 0){
+          alert("You can't bet that much! Add more money!");
+        }
+        else{
+          document.getElementById("betID").innerHTML = "$" + bet;
+        }
+      }
+      
+      function getBet(){
+        var value = prompt("How much money would you like to bet?");
+        bet = parseInt(value);
+        if(cash - bet < 0 || cash <0){
+          alert("You can't bet that much! Add more money!");
+        }
+        else{
+          document.getElementById("betID").innerHTML = "$" + bet;
+        }
+      }
+      
+      function play(){
+	    player += Math.floor((Math.random()*11)+1);
+        document.getElementById("playerID").innerHTML = player;
+        if(player>=21){
+          calculateWinning();
+        }
+      }
+      
+      function calculateWinning(){
+        while(dealer<18){
+          dealer += Math.floor((Math.random()*11)+1);
+        }
+        cash = cash - bet;
+        if(player>21){
+          document.getElementById("resultID").innerHTML = "Busted! You Lose!";
+        }
+        else if(dealer>21){
+          document.getElementById("resultID").innerHTML = "Dealer Busted! You Wins";
+          cash = cash + bet*2;
+        }
+        else if(player==21){
+          document.getElementById("resultID").innerHTML = "You got 21! You Wins!";
+          cash = cash + bet*3;
+        }
+        else if(dealer<player){
+          document.getElementById("resultID").innerHTML = "You beat the Dealer! You Wins!";
+          cash = cash + bet*2;
+        }
+        else{
+          document.getElementById("resultID").innerHTML = "Dealer Wins!"
+        }
+        document.getElementById("dealerID").innerHTML = dealer;
+        document.getElementById("cashID").innerHTML = "$" + cash;
+      }
+      
+      function newGame(){
+        player = dealer = bet = 0;
+        document.getElementById("playerID").innerHTML = "";
+        document.getElementById("dealerID").innerHTML = "";
+        document.getElementById("betID").innerHTML = "";
+        document.getElementById("resultID").innerHTML = "";
+        document.getElementById("cashID").innerHTML = "$" + cash;
+      }
+      
+      function addMoney(){
+        var value = prompt("How much money would you like to add?");
+        cash += parseInt(value);
+        document.getElementById("cashID").innerHTML = "$" + cash;
+      }
+      
+    </script>
+	</head>
+	<body>
+	<center>
+		<h1>Welcome to Black Jack!</h1>
+        <h3>A simple game I made using what I learned from html.</h3>
+		<hr/>
+		<table>
+			<tr>
+				<th>Your Total</th>
+				<th>Dealer Total</th>
+				<th>Bet Amount</th>
+				<th>Cash Remaining</th>
+			</tr>
+			<tr>
+				<td><p id='playerID'>&nbsp;</p></td>
+				<td><p id='dealerID'>&nbsp;</p></td>
+				<td><p id='betID'>&nbsp;</p></td>
+				<td><p id='cashID'>$500</p></td>
+			</tr>
+		</table>
+		<p>Game Result: <b id="resultID"></b></p>
+		<table>
+			<tr>
+				<td><button onclick='bet+=10; showBet()'>$10</button></td>
+				<td><button onclick='getBet()'>Custom Bet</button></td>
+				<td><button onclick='newGame()'>New Game</button></td>
+			</tr>
+			<tr>
+				<td><button onclick='play()'>Deal Card</button></td>
+				<td><button onclick='calculateWinning()'>Reveal Cards</button></td>
+				<td><button onclick='addMoney()'>Add Money</button></td>
+			</tr>
+		</table>
+	</center>
+	</body>
+</html>
